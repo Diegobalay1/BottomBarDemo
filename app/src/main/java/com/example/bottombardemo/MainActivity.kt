@@ -3,7 +3,9 @@ package com.example.bottombardemo
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -44,6 +46,15 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MainScreen() {
     val navController = rememberNavController()
+    
+    Scaffold(
+        topBar = { TopAppBar(title = { Text(text = "Bottom Navigation Demo")}) },
+        content = { padding ->
+            Column(Modifier.padding(padding)) {
+                NavigationHost(navController = navController)
+            } },
+        bottomBar = { BottomNavigationBar(navController = navController) }
+    )
 }
 
 @Composable
